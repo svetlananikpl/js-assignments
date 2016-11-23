@@ -124,15 +124,12 @@ function timeSpanToString(startDate, endDate) {
 function angleBetweenClockHands(date) {
     /*    var clockDate = new Date(date);*/
     var hours = date.getUTCHours();
-    if (hours > 18) {
-        hours -= 18;
-    } else if (hours > 12) {
+    if (hours > 12) {
         hours -= 12;
-    } else if (hours > 6) {
-        hours -= 6;
     }
+    var result = Math.abs(( Math.PI / 180) * (0.5 *(60 * hours + date.getMinutes()) - 6 * date.getMinutes()));
 
-    return Math.abs((0.5 * Math.PI / 180) * (60 * hours - 11 * date.getMinutes()));
+    return result > Math.PI ? result - Math.PI : result;
 }
 
 
